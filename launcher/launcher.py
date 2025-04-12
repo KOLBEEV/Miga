@@ -1,7 +1,6 @@
 import os
 import requests
 import zipfile
-import shutil
 import subprocess
 from tqdm import tqdm
 
