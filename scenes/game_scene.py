@@ -19,7 +19,6 @@ class GameScene(Scene):
     def handle_event(self, event):
         if event.type == pygame.QUIT:
             pygame.quit()
-            exit()
 
     def update(self):
         self.spawn_timer += 1

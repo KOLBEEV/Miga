@@ -45,7 +45,6 @@ class MenuScene(Scene):
                     self._next_scene = GameScene()
                 elif selected_option == constant.EXIT:
                     pygame.quit()
-                    exit()
 
     def update(self):
         pass
