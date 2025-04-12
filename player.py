@@ -21,7 +21,8 @@ class Player(pygame.sprite.Sprite):
             fps=8
         )
         self.facing_left = False
-        self.image = self.animator.get_image()
+        self.scale = 1.5
+        self.image = self.animator.get_image(scale=self.scale)
         self.rect = self.image.get_rect(topleft=(x, y))
         self.velocity_y = 0
         self.jumping = False
@@ -60,7 +61,7 @@ class Player(pygame.sprite.Sprite):
             self.animator.set_animation("idle")
 
         self.animator.update()
-        self.image = self.animator.get_image(flip=self.facing_left)
+        self.image = self.animator.get_image(flip=self.facing_left, scale=self.scale)
         self.rect = self.image.get_rect(topleft=self.rect.topleft)
 
     def jump(self):

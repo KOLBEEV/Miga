@@ -42,8 +42,14 @@ class Animator:
             self.current_frame = (self.current_frame + 1) % len(self.animations[self.current_anim])
             self.timer = 0
 
-    def get_image(self, flip=False):
+    def get_image(self, flip=False, scale=1.0):
         image = self.animations[self.current_anim][self.current_frame]
         if flip:
             image = pygame.transform.flip(image, True, False)
+        size = (
+            int(image.get_width() * scale),
+            int(image.get_height() * scale)
+        )
+        image = pygame.transform.scale(image, size)
+
         return image
