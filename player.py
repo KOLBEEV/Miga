@@ -44,3 +44,7 @@ class Player(pygame.sprite.Sprite):
             self.score += 1
             self.sound_manager.play('collect')
             self.sound_manager.play('auf', chance=0.2)
+
+    def damage(self, count=1):
+        self.health -= 1
+        self.sound_manager.play('damage')

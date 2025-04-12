@@ -16,5 +16,3 @@ class Fish(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.y += self.speed_y
-        if self.rect.top > constant.HEIGHT:
-            self.kill()

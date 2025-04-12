@@ -3,6 +3,7 @@ import constant
 from background import Background
 from player import Player
 from fish import Fish
+from fish_handler import handle_fish_falls
 
 
 pygame.init()
@@ -11,6 +12,7 @@ font = pygame.font.Font("src/font/LapsusPro.ttf", 30)
 
 screen = pygame.display.set_mode((constant.WIDTH, constant.HEIGHT))
 pygame.display.set_caption(constant.TITLE)
+pygame.display.set_icon(pygame.image.load("src/image/fish/fish1.png"))
 
 clock = pygame.time.Clock()
 running = True
@@ -40,11 +42,13 @@ while running:
 
     player.check_collision(fishes)
 
-    screen.fill(constant.WHITE)
+    screen.fill(constant.SKY)
     background.draw(screen)
     all_sprites.draw(screen)
 
-    score_text = font.render(f"Очки: {player.score}", True, (0, 0, 0))
+    handle_fish_falls(fishes, player)
+
+    score_text = font.render(f"Риба: {player.score}", True, (0, 0, 0))
     health_text = font.render(f"Здоровье: {player.health}", True, (255, 0, 0))
 
     screen.blit(score_text, (10, 10))

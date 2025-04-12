@@ -14,6 +14,10 @@ class SoundManager:
             'src/sound/auf/1.wav',
             'src/sound/auf/2.wav',
         ])
+        self.register_sound('damage', [
+            'src/sound/damage/1.wav',
+            'src/sound/damage/2.wav',
+        ])
 
     def register_sound(self, key, file_list):
         self.sounds[key] = []
