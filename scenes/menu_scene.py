@@ -2,12 +2,13 @@ import pygame
 from .base_scene import Scene
 import constant
 import requests
+from utils import resource_path
 
 
 class MenuScene(Scene):
     def __init__(self):
-        self.font = pygame.font.Font("src/font/LapsusPro.ttf", 40)
-        self.small_font = pygame.font.Font("src/font/LapsusPro.ttf", 28)
+        self.font = pygame.font.Font(resource_path("src/font/LapsusPro.ttf"), 40)
+        self.small_font = pygame.font.Font(resource_path("src/font/LapsusPro.ttf"), 28)
 
         self.options = [constant.START_GAME, constant.TRAIN, constant.SHOP, constant.SETTINGS, constant.EXIT]
         self.selected_index = 0

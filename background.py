@@ -1,5 +1,5 @@
 import pygame
-
+from utils import resource_path
 
 class Background:
     def __init__(self, screen_size):
@@ -14,7 +14,7 @@ class Background:
         ]
 
         for path, x, y in layer_data:
-            image = pygame.image.load(path).convert_alpha()
+            image = pygame.image.load(resource_path(path)).convert_alpha()
             self.layers.append({
                 "image": image,
                 "pos": (x, y)

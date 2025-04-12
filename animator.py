@@ -1,9 +1,10 @@
 import pygame
+from utils import resource_path
 
 
 class Animator:
     def __init__(self, sprite_sheet, frame_width, frame_height, animations, fps=10):
-        self.sprite_sheet = pygame.image.load(sprite_sheet).convert_alpha()
+        self.sprite_sheet = pygame.image.load(resource_path(sprite_sheet)).convert_alpha()
         self.frame_width = frame_width
         self.frame_height = frame_height
         self.fps = fps

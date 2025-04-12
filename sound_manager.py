@@ -1,5 +1,6 @@
 import pygame
 import random
+from utils import resource_path
 
 
 class SoundManager:
@@ -8,15 +9,15 @@ class SoundManager:
         self.channels = {}
 
         self.register_sound('collect', [
-            'src/sound/collect/collect.mp3',
+            resource_path('src/sound/collect/collect.mp3'),
         ])
         self.register_sound('auf', [
-            'src/sound/auf/1.wav',
-            'src/sound/auf/2.wav',
+            resource_path('src/sound/auf/1.wav'),
+            resource_path('src/sound/auf/2.wav'),
         ])
         self.register_sound('damage', [
-            'src/sound/damage/1.wav',
-            'src/sound/damage/2.wav',
+            resource_path('src/sound/damage/1.wav'),
+            resource_path('src/sound/damage/2.wav'),
         ])
 
     def register_sound(self, key, file_list):

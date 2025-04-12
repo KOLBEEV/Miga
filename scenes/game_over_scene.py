@@ -4,6 +4,7 @@ from .base_scene import Scene
 import constant
 import requests
 import socket
+from utils import resource_path
 
 
 class GameOverScene(Scene):
@@ -12,8 +13,8 @@ class GameOverScene(Scene):
         self.buyer_prices = {
             "Марат": 0.5, "Александр": 2.0, "Фёдор": 1.0, "Вячеслав": 1.0
         }
-        self.font = pygame.font.Font("src/font/LapsusPro.ttf", 40)
-        self.small_font = pygame.font.Font("src/font/LapsusPro.ttf", 30)
+        self.font = pygame.font.Font(resource_path("src/font/LapsusPro.ttf"), 40)
+        self.small_font = pygame.font.Font(resource_path("src/font/LapsusPro.ttf"), 30)
 
         self.restart = False
         self.roulette_done = False

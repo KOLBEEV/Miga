@@ -5,11 +5,12 @@ from player import Player
 from fish import Fish
 from fish_handler import handle_fish_falls
 import constant
+from utils import resource_path
 
 
 class GameScene(Scene):
     def __init__(self):
-        self.font = pygame.font.Font("src/font/LapsusPro.ttf", 30)
+        self.font = pygame.font.Font(resource_path("src/font/LapsusPro.ttf"), 30)
         self.background = Background((constant.WIDTH, constant.HEIGHT))
         self.player = Player(constant.WIDTH / 2, constant.HEIGHT - 10)
         self.all_sprites = pygame.sprite.Group(self.player)
