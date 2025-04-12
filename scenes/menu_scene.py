@@ -1,4 +1,5 @@
 import pygame
+from Tools.demo.spreadsheet import center
 from Tools.scripts.generate_opcode_h import header
 
 from .base_scene import Scene
@@ -43,23 +44,38 @@ class MenuScene(Scene):
     def draw(self, screen):
         screen.fill(constant.SKY)
 
-        start_x = 100
-        start_y = 150
+        menu_rect = pygame.Rect(80, 100, 400, 400)
+        pygame.draw.rect(screen, (240, 240, 255), menu_rect, border_radius=20)
+        pygame.draw.rect(screen, (180, 180, 220), menu_rect, width=4, border_radius=20)
+
+        start_y = menu_rect.y + 30
         spacing = 60
 
         for i, option in enumerate(self.options):
-            color = (0, 0, 0)
-            if i == self.selected_index:
-                color = (255, 0, 0)
-            text = self.font.render(option, True, color)
-            screen.blit(text, (start_x, start_y + i * spacing))
+            is_selected = i == self.selected_index
 
-        header = self.font.render(constant.RECORDS, True, (0, 0, 0))
-        screen.blit(header, (constant.WIDTH - 300, 100))
+            button_rect = pygame.Rect(menu_rect.x + 20, start_y + i * spacing, 360, 50)
+            bg_color = (200, 220, 255) if is_selected else (255, 255, 255)
+            text_color = (20, 20, 40) if is_selected else (60, 60, 60)
+
+            pygame.draw.rect(screen, bg_color, button_rect, border_radius=10)
+            pygame.draw.rect(screen, (100, 100, 150), button_rect, width=2, border_radius=10)
+
+            text = self.font.render(option, True, text_color)
+            text_rect = text.get_rect(center=button_rect.center)
+            screen.blit(text, text_rect)
+
+        board_rect = pygame.Rect(constant.WIDTH - 360, 100, 260, 400)
+        pygame.draw.rect(screen, (255, 245, 230), board_rect, border_radius=20)
+        pygame.draw.rect(screen, (180, 150, 120), board_rect, width=4, border_radius=20)
+
+        header = self.font.render(constant.RECORDS, True, (80, 40, 20))
+        header_rect = header.get_rect(center=(board_rect.centerx, board_rect.y + 40))
+        screen.blit(header, header_rect)
 
         for i, (name, score) in enumerate(self.records):
-            line = self.small_font.render(f"{i+1}. {name} - {score}", True, (0, 0, 0))
-            screen.blit(line, (constant.WIDTH - 300, 160 + i * 40))
+            line = self.small_font.render(f"{i+1}. {name} - {score}", True, (60, 30, 20))
+            screen.blit(line, (board_rect.x + 20, board_rect.y + 80 + i * 40))
 
     def next_scene(self):
         return getattr(self, "_next_scene", None)
