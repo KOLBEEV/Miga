@@ -1,9 +1,7 @@
 import pygame
-from Tools.demo.spreadsheet import center
-from Tools.scripts.generate_opcode_h import header
-
 from .base_scene import Scene
 import constant
+import requests
 
 
 class MenuScene(Scene):
@@ -14,7 +12,18 @@ class MenuScene(Scene):
         self.options = [constant.START_GAME, constant.TRAIN, constant.SHOP, constant.SETTINGS, constant.EXIT]
         self.selected_index = 0
 
-        self.records = [
+        self.records = self.fetch_records()
+
+    def fetch_records(self):
+        try:
+            url = "https://miga-score-server.onrender.com/top"
+            response = requests.get(url, timeout=3)
+            if response.status_code == 200:
+                return response.json()
+        except Exception as e:
+            print(f"[Ошибка загрузки рекордов]: {e}")
+
+        return [
             ("Игрок1", 0),
             ("Игрок2", 0),
             ("Игрок3", 0),

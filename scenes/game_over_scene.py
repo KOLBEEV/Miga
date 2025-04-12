@@ -2,6 +2,8 @@ import pygame
 import random
 from .base_scene import Scene
 import constant
+import requests
+import socket
 
 
 class GameOverScene(Scene):
@@ -52,6 +54,18 @@ class GameOverScene(Scene):
         if self.roulette_done and not hasattr(self, "money"):
             rate = self.buyer_prices.get(self.current_choice, 1.0)
             self.money = int(self.score * constant.PRICE * rate)
+
+            try:
+                username = socket.gethostname()
+                response = requests.post("https://miga-score-server.onrender.com/submit", json={
+                    "username": username,
+                    "buyer": self.current_choice,
+                    "score": self.score,
+                    "money": self.money
+                })
+                print("Данные отправлены: ", response.status_code)
+            except Exception as e:
+                print("Ошибка отправки: ", e)
 
     def draw(self, screen):
         screen.fill((20, 20, 40))
