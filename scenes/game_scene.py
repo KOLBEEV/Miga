@@ -46,6 +46,6 @@ class GameScene(Scene):
     def next_scene(self):
         if self.player.health <= 0:
             from .game_over_scene import GameOverScene
-            return GameOverScene()
+            return GameOverScene(self.player.score)
 
         return None

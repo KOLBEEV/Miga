@@ -22,3 +22,6 @@ RECORDS = "РЕКОРДЫ"
 # game_over
 EXIT_TO_MENU = "ВЫЙТИ В МЕНЮ"
 PLAY_AGAIN = "СЫГРАТЬ ЗАНОВО"
+
+# fish
+PRICE = 200
